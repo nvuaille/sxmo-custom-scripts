@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+# This script prints the battery level
+# modem log merged with contact names defined in contacts file tsv.
+
+# include common definitions
+# shellcheck source=scripts/core/sxmo_common.sh
+. "/usr/bin/sxmo_common.sh"
+
+level() {
+	BAT="$(cat /sys/class/power_supply/axp20x-battery/capacity)"
+	STATUS="$(cat /sys/class/power_supply/axp20x-battery/status)"
+	LEVEL="$(
+		printf %b "Close Menu\n$BAT $STATUS" |
+		dmenu -idx "$DMENUIDX" -l 10 -p Battery -c -i
+		)"
+	echo "LEVEL" | grep "Close Menu" && kill -9 0
+}
+
+DMENUIDX=0
+level

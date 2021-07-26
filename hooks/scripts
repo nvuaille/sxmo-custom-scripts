@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+# include common definitions
+. "/usr/bin/sxmo_common.sh"
+
+echo "$icon_mic Record          ^ 0 ^ sxmo_record.sh"
+echo "$icon_tmr Timer           ^ 0 ^ sxmo_timer.sh"
