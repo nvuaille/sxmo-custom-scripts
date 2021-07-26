@@ -23,7 +23,9 @@ contacts() {
 	RECENTCALLS="$(
 		awk '/pickup|start/ { print $1 "\t" $2 "\t" $3}' "$LOGFILE" |
 		tac |
-		sed 's/T[0-9:+]*//' |
+		sed 's/[0-9]*-//' |
+		sed 's/T/,/' |
+		sed 's/:[0-9+]*:00//' |
 		sed 's/call_pickup/</' |
 		sed 's/call_start/>/' |
 		sed '/^[[:space:]]*$/d'
